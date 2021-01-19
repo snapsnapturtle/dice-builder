@@ -16,7 +16,7 @@ function App() {
                 shadowMap={true}
                 pixelRatio={window.devicePixelRatio}
                 colorManagement={false}
-                camera={{ zoom: 5, position: [ 0, 10, 20 ] }}
+                camera={{ zoom: 8, position: [ 0, 10, 20 ] }}
             >
                 <Suspense fallback={<CanvasLoading />}>
                     <ActiveDie />

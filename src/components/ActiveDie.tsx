@@ -30,17 +30,19 @@ export function ActiveDie() {
             customMaterialsFunction: (text: string) => {
                 const dieSide = Number.parseInt(text) - 1;
                 if (textureMaps[ dieSide ]) {
-                    return new THREE.MeshPhongMaterial(Object.assign({}, {
+                    return new THREE.MeshPhongMaterial({
                         specular: 0x2e2e2e,
                         color: 0xf0f0f0,
                         shininess: 10,
                         flatShading: true,
-                        emissive: new THREE.Color('#FF5A00'),
-                        emissiveMap: emissionMaps[ dieSide ]
-                    }, { map: textureMaps[ dieSide ] }));
+                        emissive: new THREE.Color('#702600'),
+                        emissiveMap: emissionMaps[ dieSide ],
+                        map: textureMaps[ dieSide ]
+                    });
                 } else {
                     return new THREE.MeshPhongMaterial({
-                        color: new THREE.Color('#ffffff')
+                        color: new THREE.Color('#FFC600'),
+                        emissive: new THREE.Color('#702600')
                     });
                 }
             }
