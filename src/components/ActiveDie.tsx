@@ -3,7 +3,7 @@ import CANNON, { Vec3, World } from 'cannon';
 import { useEffect, useMemo, useRef } from 'react';
 import { useFrame, useThree } from 'react-three-fiber';
 import * as THREE from 'three';
-import { DiceD6, DiceManager, DiceObject } from '../lib/DiceLibrary';
+import { DiceD10, DiceD20, DiceD4, DiceD6, DiceManager, DiceObject } from '../lib/DiceLibrary';
 
 export function ActiveDie() {
     const { scene } = useThree();
@@ -21,12 +21,12 @@ export function ActiveDie() {
 
     useEffect(() => {
         DiceManager.setWorld(world);
-        DiceManager.world.gravity.set(0, -6.82, 0);
-        DiceManager.world.broadphase = new CANNON.NaiveBroadphase();
-        DiceManager.world.solver.iterations = 16;
 
         const die = new DiceD6({
             size: 1,
+            shininess: 60,
+            backColor: '#0b2ea7',
+            fontColor: '#ffffff',
             customMaterialsFunction: (text: string) => {
                 const dieSide = Number.parseInt(text) - 1;
                 if (textureMaps[ dieSide ]) {
@@ -34,7 +34,6 @@ export function ActiveDie() {
                         specular: 0x2e2e2e,
                         color: 0xf0f0f0,
                         shininess: 10,
-                        flatShading: true,
                         emissive: new THREE.Color('#702600'),
                         emissiveMap: emissionMaps[ dieSide ],
                         map: textureMaps[ dieSide ]
@@ -49,7 +48,6 @@ export function ActiveDie() {
         });
 
         die.getObject().rotation.z = Math.PI;
-        die.getObject().position.y = 3;
 
         die.updateBodyFromMesh();
 
@@ -62,8 +60,7 @@ export function ActiveDie() {
         };
     }, [ emissionMaps, scene, textureMaps, world ]);
 
-    useFrame((_, delta) => {
-        DiceManager.world.step(delta);
+    useFrame(() => {
         diceRef.current?.updateMeshFromBody();
     });
 
