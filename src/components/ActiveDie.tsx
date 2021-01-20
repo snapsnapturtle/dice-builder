@@ -3,7 +3,7 @@ import CANNON, { Vec3, World } from 'cannon';
 import { useEffect, useMemo, useRef } from 'react';
 import { useFrame, useThree } from 'react-three-fiber';
 import * as THREE from 'three';
-import { DiceD10, DiceD20, DiceD4, DiceD6, DiceManager, DiceObject } from '../lib/DiceLibrary';
+import { DiceD6, DiceManager, DiceObject } from '../lib/DiceLibrary';
 
 export function ActiveDie() {
     const { scene } = useThree();
