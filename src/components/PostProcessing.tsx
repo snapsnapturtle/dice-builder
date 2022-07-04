@@ -13,10 +13,10 @@ export function PostProcessing() {
         const bloom = new BloomEffect({
             blendFunction: BlendFunction.ADD,
             kernelSize: KernelSize.MEDIUM,
-            luminanceThreshold: 0.25,
-            luminanceSmoothing: 0.25,
-            blurScale: 0.1,
-            height: 600
+            luminanceThreshold: 0.3,
+            luminanceSmoothing: 0.3,
+            intensity: 2,
+            height: 800
         });
 
         composer.addPass(new EffectPass(camera, bloom));
