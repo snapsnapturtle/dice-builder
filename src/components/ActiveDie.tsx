@@ -8,8 +8,8 @@ import { DiceD6, DiceManager, DiceObject } from '../lib/DiceLibrary';
 export function ActiveDie() {
     const { scene } = useThree();
     const diceRef = useRef<DiceObject>();
-    const textureMaps = useTexture([ 1, 2, 3, 4, 5, 6 ].map(side => `/dice/lava/2021-01-17-lava-dice-${side}-face.png`));
-    const emissionMaps = useTexture([ 1, 2, 3, 4, 5, 6 ].map(side => `/dice/lava/2021-01-17-lava-dice-${side}-emission.png`));
+    const textureMaps = useTexture([ 1, 2, 3, 4, 5, 6 ].map(side => `${process.env.PUBLIC_URL}/dice/lava/2021-01-17-lava-dice-${side}-face.png`));
+    const emissionMaps = useTexture([ 1, 2, 3, 4, 5, 6 ].map(side => `${process.env.PUBLIC_URL}/dice/lava/2021-01-17-lava-dice-${side}-emission.png`));
 
     const world: World = useMemo(() => {
         const w = new World();
